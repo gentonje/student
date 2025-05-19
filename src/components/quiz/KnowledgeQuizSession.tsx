@@ -556,20 +556,13 @@ export function KnowledgeQuizSession({ onGoToHome }: KnowledgeQuizSessionProps) 
             <DialogTitle>PDF Document: {pdfFile?.name || 'Uploaded PDF'}</DialogTitle>
           </DialogHeader>
           {configPdfDataUri ? (
-            <object
-                data={configPdfDataUri}
-                type="application/pdf"
-                width="100%"
-                height="100%"
-                className="flex-grow"
-            >
-                <p className="p-4 text-center text-muted-foreground">
-                    It appears your browser does not support displaying PDFs this way. 
-                    You can try to <a href={configPdfDataUri} download={pdfFile?.name || "document.pdf"} className="text-primary hover:underline">download the PDF</a> instead.
-                </p>
-            </object>
+             <iframe
+                src={configPdfDataUri}
+                title={pdfFile?.name || 'Uploaded PDF'}
+                className="flex-grow w-full h-full border-0"
+              />
           ) : (
-            <div className="flex-grow flex items-center justify-center text-muted-foreground p-4">
+            <div className="flex-grow flex items-center justify-center text-muted-foreground p-1">
                 <p>PDF will be displayed here once processed.</p>
             </div>
           )}
